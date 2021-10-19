@@ -7,7 +7,7 @@ public class ThreadState {
                 }
         );
         Thread second = new Thread(
-                () -> {}
+                () -> { }
         );
         first.start();
         second.start();
