@@ -1,4 +1,4 @@
-package ru.job4j.common_resources;
+package ru.job4j.commonresources;
 
 public class Cache {
     private static Cache cache;
