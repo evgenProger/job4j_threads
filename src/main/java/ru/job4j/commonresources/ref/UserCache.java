@@ -23,6 +23,7 @@ public class UserCache {
         for (User u: users.values()) {
             result.add(User.of(u.getName()));
         }
+
         return result;
     }
 }
