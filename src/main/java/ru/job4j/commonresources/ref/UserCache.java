@@ -1,5 +1,7 @@
 package ru.job4j.commonresources.ref;
 
+import net.jcip.annotations.ThreadSafe;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
@@ -23,7 +25,6 @@ public class UserCache {
         for (User u: users.values()) {
             result.add(User.of(u.getName()));
         }
-
         return result;
     }
 }
