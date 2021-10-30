@@ -14,28 +14,27 @@ public class UserStore {
 
 
     public synchronized boolean add(User user) {
-        users.put(user.getId(), user);
-        return true;
+       return users.putIfAbsent(user.getId(), user) == null;
     }
 
     public synchronized boolean update(User user) {
-        users.put(user.getId(), user);
-        return true;
+       return this.users.replace(user.getId(), user) == null;
     }
 
     public synchronized boolean delete(User user) {
-        this.users.remove(user.getId());
-        return true;
+        return this.users.remove(user.getId(), user);
     }
 
     public synchronized boolean transfer(int fromId, int toId, int amount) {
+        boolean result = false;
         User userFrom = users.get(fromId);
         User userTo = users.get(toId);
-        userFrom.setAmount(userFrom.getAmount() - amount);
-        userTo.setAmount(userTo.getAmount() + amount);
-        this.update(userFrom);
-        this.update(userTo);
-        return true;
+        if (userFrom != null && userTo != null && userFrom.getAmount() > userTo.getAmount()) {
+            userFrom.setAmount(userFrom.getAmount() - amount);
+            userTo.setAmount(userTo.getAmount() + amount);
+            result = true;
+        }
+        return result;
     }
 
     public synchronized Map<Integer, User> getUsers() {
