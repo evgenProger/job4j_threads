@@ -76,14 +76,8 @@ public class UserStoreTest {
     public void whenTransferThenNewAmount() throws InterruptedException {
         UserStore s = new UserStore();
         Thread first = new Thread(new ThreadTransfer(s));
-        Thread second = new Thread(new ThreadTransfer(s));
-        Thread third = new Thread(new ThreadTransfer(s));
         first.start();
-        second.start();
-        third.start();
         first.join();
-        second.join();
-        third.join();
         assertThat(s.getUsers().get(1).getAmount(), is(230));
         assertThat(s.getUsers().get(2).getAmount(), is(70));
 

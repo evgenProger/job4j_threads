@@ -29,7 +29,7 @@ public class UserStore {
         boolean result = false;
         User userFrom = users.get(fromId);
         User userTo = users.get(toId);
-        if (userFrom != null && userTo != null && userFrom.getAmount() > userTo.getAmount()) {
+        if (userFrom != null && userTo != null && userFrom.getAmount() >= amount) {
             userFrom.setAmount(userFrom.getAmount() - amount);
             userTo.setAmount(userTo.getAmount() + amount);
             result = true;
