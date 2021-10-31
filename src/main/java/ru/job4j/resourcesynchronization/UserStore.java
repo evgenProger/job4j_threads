@@ -18,7 +18,7 @@ public class UserStore {
     }
 
     public synchronized boolean update(User user) {
-       return this.users.replace(user.getId(), user) == null;
+       return this.users.replace(user.getId(), user) != null;
     }
 
     public synchronized boolean delete(User user) {
