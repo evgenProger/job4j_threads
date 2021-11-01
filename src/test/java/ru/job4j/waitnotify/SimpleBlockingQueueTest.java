@@ -1,10 +1,12 @@
 package ru.job4j.waitnotify;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.LinkedList;
 import java.util.Queue;
 
+@Ignore
 public class SimpleBlockingQueueTest {
 
     private static class ThreadProducer implements Runnable {
@@ -18,7 +20,7 @@ public class SimpleBlockingQueueTest {
 
         @Override
         public void run() {
-            for (int i = 1; i < 16; i += 3) {
+            for (int i = 1; i < 5; i++) {
                 simpleBlockingQueue.offer(i);
                 System.out.println("выполняется производитель");
             }
@@ -35,7 +37,7 @@ public class SimpleBlockingQueueTest {
 
         @Override
         public void run() {
-            for (int i = 1; i < 50; i += 3) {
+            for (int i = 1; i < 5; i++) {
                 simpleBlockingQueue.poll();
                 System.out.println("Выполняется потребитель");
             }
