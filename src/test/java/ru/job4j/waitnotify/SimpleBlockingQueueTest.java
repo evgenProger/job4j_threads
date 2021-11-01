@@ -35,7 +35,7 @@ public class SimpleBlockingQueueTest {
 
         @Override
         public void run() {
-            for (int i = 1; i < 50; i += 3 ) {
+            for (int i = 1; i < 50; i += 3) {
                 simpleBlockingQueue.poll();
                 System.out.println("Выполняется потребитель");
             }
