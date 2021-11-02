@@ -23,7 +23,7 @@ public class CountBarrier {
 
     public void await() throws InterruptedException {
         synchronized (monitor) {
-            while (!(count >= total)) {
+            while (count < total) {
                 monitor.wait();
             }
         }
