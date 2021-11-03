@@ -20,10 +20,14 @@ public class SimpleBlockingQueueTest {
 
         @Override
         public void run() {
-            for (int i = 1; i < 5; i++) {
-                simpleBlockingQueue.offer(i);
-                System.out.println("выполняется производитель");
-            }
+                try {
+                    simpleBlockingQueue.offer(2);
+                    simpleBlockingQueue.offer(3);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+
         }
     }
 
@@ -37,21 +41,23 @@ public class SimpleBlockingQueueTest {
 
         @Override
         public void run() {
-            for (int i = 1; i < 5; i++) {
-                simpleBlockingQueue.poll();
-                System.out.println("Выполняется потребитель");
-            }
+                try {
+                    simpleBlockingQueue.poll();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
         }
     }
 
     @Test
     public void whenTwoThreads() throws InterruptedException {
-        Thread producer = new Thread(new ThreadProducer(new SimpleBlockingQueue<Integer>()));
-        Thread consumer = new Thread(new ThreadConsumer(new SimpleBlockingQueue<Integer>()));
+        SimpleBlockingQueue<Integer> simpleBlockingQueue = new SimpleBlockingQueue<Integer>();
+        Thread producer = new Thread(new ThreadProducer(simpleBlockingQueue));
+        Thread consumer = new Thread(new ThreadConsumer(simpleBlockingQueue));
         producer.start();
         consumer.start();
         producer.join();
         consumer.join();
     }
-
 }
