@@ -39,4 +39,5 @@ public class SimpleBlockingQueue<T> {
         System.out.println("Poll the object and the space is vacated" + queue);
         return this.queue.poll();
     }
+
 }

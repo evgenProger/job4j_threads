@@ -12,8 +12,6 @@ import static org.junit.Assert.assertThat;
 @Ignore
 public class SimpleBlockingQueueTest {
 
-
-
     private static class ThreadProducer implements Runnable {
 
         private final  SimpleBlockingQueue<Integer> simpleBlockingQueue;
