@@ -17,17 +17,15 @@ public class SimpleBlockingQueueTest {
             this.simpleBlockingQueue = simpleBlockingQueue;
         }
 
-
         @Override
         public void run() {
                 try {
-                    simpleBlockingQueue.offer(2);
-                    simpleBlockingQueue.offer(3);
+                    for (int i = 0; i < 3; i++) {
+                        simpleBlockingQueue.offer(i);
+                    }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
-
         }
     }
 
@@ -42,11 +40,12 @@ public class SimpleBlockingQueueTest {
         @Override
         public void run() {
                 try {
-                    simpleBlockingQueue.poll();
+                   for (int i = 0; i < 3; i++) {
+                       simpleBlockingQueue.poll();
+                   }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
         }
     }
 

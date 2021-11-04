@@ -9,35 +9,27 @@ import java.util.Queue;
 @ThreadSafe
 public class SimpleBlockingQueue<T> {
 
-    private  int capacity = 3;
-
     @GuardedBy("this")
     private final Queue<T> queue = new LinkedList<>();
 
     public synchronized void offer(T value) throws InterruptedException {
-        while (queue.size() <= capacity) {
-            queue.add(value);
-            System.out.println("Добавляем элемент");
+        int capacity = 3;
+        while (queue.size() == capacity) {
+            System.out.println("Очередь заполнина. Ждем пока освободится место.");
+            wait();
         }
-        System.out.println("производитель заполнил очередь" + queue);
-        wait();
-
-
+        System.out.println("Добавляем элемент в очередь." + queue);
+        queue.add(value);
+        System.out.println("Очередь после добавления" + queue);
+        notifyAll();
    }
 
     public synchronized T poll() throws InterruptedException {
-        T val;
         while (this.queue.isEmpty()) {
             System.out.println("Очередь пуста. Нужно подождать заполнения");
             wait();
         }
-        val = this.queue.poll();
-        System.out.println("Место освободилось" + queue);
-        notify();
-        return val;
-    }
-
-    public synchronized Queue<T> getQueue() {
-        return queue;
+        System.out.println("Забрали элемент и место освободилось" + queue);
+        return this.queue.poll();
     }
 }
