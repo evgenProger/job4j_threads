@@ -12,8 +12,14 @@ public class SimpleBlockingQueue<T> {
     @GuardedBy("this")
     private final Queue<T> queue = new LinkedList<>();
 
+    private final int capacity;
+
+    public SimpleBlockingQueue(int capacity) {
+        this.capacity = capacity;
+    }
+
     public synchronized void offer(T value) throws InterruptedException {
-        int capacity = 3;
+
         while (queue.size() == capacity) {
             System.out.println("The Queue is full. Waiting when to free up space.");
             wait();
@@ -28,6 +34,7 @@ public class SimpleBlockingQueue<T> {
         while (this.queue.isEmpty()) {
             System.out.println("The Queue is empty. Need to wait when it will be full");
             wait();
+            notifyAll();
         }
         System.out.println("Poll the object and the space is vacated" + queue);
         return this.queue.poll();
