@@ -32,7 +32,7 @@ public class SimpleBlockingQueue<T> {
 
     public synchronized T poll() throws InterruptedException {
         while (this.queue.isEmpty()) {
-            System.out.println("The Queue is empty. Need to wait when it will be full");
+            System.out.println("The Queue is empty. Need to wait when add");
             wait();
             notifyAll();
         }
@@ -40,4 +40,7 @@ public class SimpleBlockingQueue<T> {
         return this.queue.poll();
     }
 
+    public synchronized Queue<T> getQueue() {
+        return queue;
+    }
 }
