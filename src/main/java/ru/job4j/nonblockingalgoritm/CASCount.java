@@ -10,7 +10,7 @@ public class CASCount {
     private final AtomicReference<Integer> count = new AtomicReference<>(number);
 
     public void increment() {
-        if(!(count.compareAndSet(number, number++))) {
+        if (!(count.compareAndSet(number, number++))) {
             throw new UnsupportedOperationException("Count is not impl.");
         }
     }
