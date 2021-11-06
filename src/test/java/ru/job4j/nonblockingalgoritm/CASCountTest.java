@@ -10,7 +10,7 @@ public class CASCountTest {
     public void whenThreeThreadsIncrement() throws InterruptedException {
         CASCount count = new CASCount();
 
-        Thread incremetOne = new Thread (
+        Thread incremetOne = new Thread(
                 count::increment
         );
 
