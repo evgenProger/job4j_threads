@@ -24,17 +24,17 @@ public class SimpleBlockingQueue<T> {
         }
         queue.add(value);
         notifyAll();
-   }
+    }
 
     public synchronized T poll() throws InterruptedException {
         while (this.queue.isEmpty()) {
             wait();
-            notifyAll();
         }
+        notifyAll();
         return this.queue.poll();
     }
 
-    public synchronized Queue<T> getQueue() {
-        return queue;
+    public synchronized boolean isEmpty() {
+        return this.queue.isEmpty();
     }
 }
