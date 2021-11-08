@@ -6,8 +6,9 @@ import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
-@Ignore
+
 public class CASCountTest {
+    @Ignore
     @Test
     public void whenThreeThreadsIncrement() throws InterruptedException {
         CASCount count = new CASCount();
