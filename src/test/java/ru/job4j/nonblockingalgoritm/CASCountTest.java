@@ -31,6 +31,6 @@ public class CASCountTest {
         incremetOne.join();
         incremetTwo.join();
         incremetThree.join();
-        assertThat(count.get(), is(4));
+        assertThat(count.get(), is(3));
     }
 }
