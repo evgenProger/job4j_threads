@@ -33,4 +33,5 @@ public class CASCountTest {
         incremetThree.join();
         assertThat(count.get(), is(3));
     }
+
 }

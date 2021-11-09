@@ -14,13 +14,12 @@ public class CASCount {
         count.set(number);
         do {
            number = count.get();
-            System.out.println("счетчик равен" + " " + number);
+           System.out.println("счетчик равен" + " " + number);
         } while (count.compareAndSet(number, number + 1));
     }
 
     public int get() {
         return count.get();
     }
-
 }
 
