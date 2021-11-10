@@ -11,7 +11,6 @@ public class CASCount {
 
     public void increment() {
         int number = 0;
-        count.set(number);
         do {
            number = count.get();
            System.out.println("счетчик равен" + " " + number);
