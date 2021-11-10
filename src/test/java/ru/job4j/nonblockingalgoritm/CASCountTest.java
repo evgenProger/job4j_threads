@@ -13,24 +13,24 @@ public class CASCountTest {
     public void whenThreeThreadsIncrement() throws InterruptedException {
         CASCount count = new CASCount();
 
-        Thread incremetOne = new Thread(
+        Thread incrementOne = new Thread(
                 count::increment
         );
 
-        Thread incremetTwo = new Thread(
+        Thread incrementTwo = new Thread(
                 count::increment
         );
 
-        Thread incremetThree = new Thread(
+        Thread incrementThree = new Thread(
                 count::increment
         );
 
-        incremetOne.start();
-        incremetTwo.start();
-        incremetThree.start();
-        incremetOne.join();
-        incremetTwo.join();
-        incremetThree.join();
+        incrementOne.start();
+        incrementTwo.start();
+        incrementThree.start();
+        incrementOne.join();
+        incrementTwo.join();
+        incrementThree.join();
         assertThat(count.get(), is(3));
     }
 
