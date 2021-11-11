@@ -17,8 +17,7 @@ public class Cash {
         Base base = memory.computeIfPresent(model.getId(), (id, base1) -> {
             if (model.getVersion() == base1.getVersion()) {
               return new Base(id, base1.getVersion() + 1);
-            }
-            else {
+            } else {
                 throw new OptimisticException("Versions are not equal");
             }
 
