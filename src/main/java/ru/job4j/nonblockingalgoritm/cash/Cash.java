@@ -14,12 +14,16 @@ public class Cash {
     }
 
     public boolean update(Base model) {
-        Base base = this.memory.computeIfPresent(model.getId(),
-                (key, value) -> new Base(key, value.getVersion() + 1));
-        if (base == null) {
-            throw new OptimisticException("Versions aren't equals");
-        }
-        return true;
+        Base base = memory.computeIfPresent(model.getId(), (id, base1) -> {
+            if (model.getVersion() == base1.getVersion()) {
+              return new Base(id, base1.getVersion() + 1);
+            }
+            else {
+                throw new OptimisticException("verg");
+            }
+
+        });
+        return base != null;
     }
 
     public void delete(Base model) {
