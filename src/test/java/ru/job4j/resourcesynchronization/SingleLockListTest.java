@@ -41,4 +41,5 @@ public class SingleLockListTest {
         int val = list.get(1);
         assertThat(val, is(2));
     }
+
 }
