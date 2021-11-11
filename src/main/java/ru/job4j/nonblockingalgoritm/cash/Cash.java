@@ -19,7 +19,7 @@ public class Cash {
               return new Base(id, base1.getVersion() + 1);
             }
             else {
-                throw new OptimisticException("verg");
+                throw new OptimisticException("Versions are not equal");
             }
 
         });
