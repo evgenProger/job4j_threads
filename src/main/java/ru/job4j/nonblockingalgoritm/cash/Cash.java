@@ -14,13 +14,12 @@ public class Cash {
     }
 
     public boolean update(Base model) {
-        if (model.getVersion() != memory.get(model.getId()).getVersion()) {
-          throw new OptimisticException("Versions aren't equals");
-        }
         Base base = this.memory.computeIfPresent(model.getId(),
                 (key, value) -> new Base(key, value.getVersion() + 1));
-
-        return base != null;
+        if (base == null) {
+            throw new OptimisticException("Versions aren't equals");
+        }
+        return true;
     }
 
     public void delete(Base model) {
