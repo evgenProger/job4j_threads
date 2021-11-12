@@ -15,12 +15,10 @@ public class Cash {
 
     public boolean update(Base model) {
         Base base = memory.computeIfPresent(model.getId(), (id, base1) -> {
-            if (model.getVersion() == base1.getVersion()) {
-              return new Base(id, base1.getVersion() + 1);
-            } else {
+            if (model.getVersion() != base1.getVersion()) {
                 throw new OptimisticException("Versions are not equal");
             }
-
+            return new Base(id, base1.getVersion() + 1);
         });
         return base != null;
     }
