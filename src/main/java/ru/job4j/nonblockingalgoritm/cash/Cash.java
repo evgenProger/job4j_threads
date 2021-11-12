@@ -30,5 +30,4 @@ public class Cash {
     public Base get(int key) {
         return this.memory.get(key);
     }
-
 }
