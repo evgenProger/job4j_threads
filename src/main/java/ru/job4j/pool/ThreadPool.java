@@ -2,10 +2,8 @@ package ru.job4j.pool;
 
 import ru.job4j.waitnotify.SimpleBlockingQueue;
 
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.*;
 
 public class ThreadPool {
     private final List<Thread> threads = new LinkedList<>();
@@ -16,7 +14,7 @@ public class ThreadPool {
         for (int i = 0; i < size; i++) {
             Thread thread = new Thread(() -> {
                 try {
-                    tasks.poll();
+                    tasks.poll().run();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -36,5 +34,24 @@ public class ThreadPool {
                t.interrupt();
            }
         }
+    }
+
+    public  class Job implements Runnable {
+
+        @Override
+        public void run() {
+            try {
+                tasks.poll();
+                System.out.println("Достали задачу из списка");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+    public static void main(String[] args) throws InterruptedException {
+        ThreadPool pool = new ThreadPool();
+        pool.shutdown();
     }
 }
