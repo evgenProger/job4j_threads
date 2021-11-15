@@ -36,22 +36,20 @@ public class ThreadPool {
         }
     }
 
-    public  class Job implements Runnable {
+    public static class Job implements Runnable {
 
         @Override
         public void run() {
-            try {
-                tasks.poll();
-                System.out.println("Достали задачу из списка");
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            System.out.println("Задача выполнена");
         }
     }
 
 
     public static void main(String[] args) throws InterruptedException {
         ThreadPool pool = new ThreadPool();
+        for (int i = 0; i < 5; i++) {
+            pool.work(new Job());
+        }
         pool.shutdown();
     }
 }
