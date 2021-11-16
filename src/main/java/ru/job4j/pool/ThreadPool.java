@@ -55,8 +55,9 @@ public class ThreadPool {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        };
+        }
         try {
+            Thread.sleep(5000);
             pool.shutdown();
         } catch (InterruptedException e) {
             e.printStackTrace();
