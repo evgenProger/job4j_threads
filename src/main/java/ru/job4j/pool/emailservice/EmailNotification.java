@@ -11,17 +11,15 @@ public class EmailNotification {
     public void emailTo(User user) {
         String subject = String.format("Notification %s to email %s", user.getUsername(), user.getEmail());
         String body = String.format("Add a new event to %s", user.getUsername());
-
+        String email = user.getEmail();
+        pool.execute(() -> {
+            EmailNotification emailNotification = new EmailNotification();
+            emailNotification.send(subject, body, email);
+        });
     }
 
     public void close() {
-        while (!pool.isTerminated()) {
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
+       pool.shutdown();
     }
 
     public void send(String subject, String body, String email) {
