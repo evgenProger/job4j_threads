@@ -11,7 +11,6 @@ public class ThreadPool {
     private final SimpleBlockingQueue<Runnable> tasks = new SimpleBlockingQueue<>(size);
 
     public ThreadPool() {
-
         for (int i = 0; i < size; i++) {
             Thread thread = new Thread(() -> {
                 while (!Thread.currentThread().isInterrupted()) {
