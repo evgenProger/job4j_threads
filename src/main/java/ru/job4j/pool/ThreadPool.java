@@ -17,6 +17,7 @@ public class ThreadPool {
                     try {
                         tasks.poll().run();
                     } catch (InterruptedException e) {
+                        Thread.currentThread().interrupt();
                         e.printStackTrace();
                     }
                 }
