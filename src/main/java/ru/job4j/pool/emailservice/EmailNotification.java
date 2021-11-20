@@ -13,8 +13,7 @@ public class EmailNotification {
         String body = String.format("Add a new event to %s", user.getUsername());
         String email = user.getEmail();
         pool.execute(() -> {
-            EmailNotification emailNotification = new EmailNotification();
-            emailNotification.send(subject, body, email);
+            this.send(subject, body, email);
         });
     }
 
