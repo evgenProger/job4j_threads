@@ -45,6 +45,6 @@ public class ParallelIndexSearch<T> extends RecursiveTask<Integer> {
 
     public int find() {
         ForkJoinPool forkJoinPool = new ForkJoinPool();
-        return ((int) forkJoinPool.invoke(new ParallelIndexSearch(objects, 0, objects.length - 1, element )));
+        return ((int) forkJoinPool.invoke(new ParallelIndexSearch(objects, 0, objects.length - 1, element)));
     }
 }

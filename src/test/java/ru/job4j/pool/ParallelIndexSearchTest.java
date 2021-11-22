@@ -6,6 +6,7 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 public class ParallelIndexSearchTest {
+
     @Test
     public void whenArrayLessTenThenFindIndex() {
         Integer[] arr = new Integer[]{5, 7, 1, 25, 89, 14};
