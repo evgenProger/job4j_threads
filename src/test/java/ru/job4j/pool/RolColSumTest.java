@@ -41,5 +41,4 @@ public class RolColSumTest {
         RolColSum.Sums sums  = sum.get()[0];
         assertThat(sums.getRowSum(), is(8));
     }
-
 }

@@ -6,7 +6,7 @@ public class RolColSum {
 
     public static class Sums {
         private int rowSum;
-        private int ColSum;
+        private int colSum;
 
         public int getRowSum() {
             return rowSum;
@@ -17,11 +17,11 @@ public class RolColSum {
         }
 
         public int getColSum() {
-            return ColSum;
+            return colSum;
         }
 
         public void setColSum(int colSum) {
-            ColSum = colSum;
+            this.colSum = colSum;
         }
     }
 
@@ -57,7 +57,6 @@ public class RolColSum {
                objSums.setRowSum(rowSum);
                sums[i] = objSums;
            }
-
            return sums;
        });
     }
