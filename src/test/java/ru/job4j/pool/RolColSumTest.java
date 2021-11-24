@@ -29,16 +29,16 @@ public class RolColSumTest {
     @Test
     public void whenUseCompleTableFutureThenSumColumn() throws ExecutionException, InterruptedException {
         int[][] matrix = new int[][] {{1, 2, 3}, {3, 1, 4}, {4, 5, 6}};
-        CompletableFuture<RolColSum.Sums[]> sum = RolColSum.asyncSum(matrix);
-        RolColSum.Sums sums  = sum.get()[2];
+        RolColSum.Sums[] sum = RolColSum.asyncSum(matrix);
+        RolColSum.Sums sums  = sum[2];
         assertThat(sums.getColSum(), is(15));
     }
 
     @Test
     public void whenUseCompleTableFutureThenSumRows() throws ExecutionException, InterruptedException {
         int[][] matrix = new int[][] {{1, 2, 3}, {3, 1, 4}, {4, 5, 6}};
-        CompletableFuture<RolColSum.Sums[]> sum = RolColSum.asyncSum(matrix);
-        RolColSum.Sums sums  = sum.get()[0];
+        RolColSum.Sums[] sum = RolColSum.asyncSum(matrix);
+        RolColSum.Sums sums  = sum[0];
         assertThat(sums.getRowSum(), is(8));
     }
 
