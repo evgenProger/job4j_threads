@@ -25,19 +25,24 @@ public class RolColSum {
         }
     }
 
+    private static Sums sumByIRowAndColumn(int i, int[][] matrix) {
+        Sums objSums = new Sums();
+        int rowSum = 0;
+        int colSum = 0;
+        for (int j = 0; j < matrix.length; j++) {
+            rowSum = rowSum + matrix[j][i];
+            colSum = colSum + matrix[i][j];
+        }
+        objSums.setRowSum(rowSum);
+        objSums.setColSum(colSum);
+
+        return objSums;
+    }
+
     public static Sums[] sum(int[][] matrix) {
         Sums[] sums = new Sums[matrix.length];
         for (int i = 0; i < matrix.length; i++) {
-            int rowSum = 0;
-            int colSum = 0;
-            Sums objSums = new Sums();
-            for (int j = 0; j < matrix.length; j++) {
-                colSum = colSum + matrix[i][j];
-                rowSum = rowSum + matrix[j][i];
-            }
-            objSums.setColSum(colSum);
-            objSums.setRowSum(rowSum);
-            sums[i] = objSums;
+            sums[i] = sumByIRowAndColumn(i, matrix);
         }
         return sums;
     }
@@ -46,16 +51,7 @@ public class RolColSum {
         Sums[] sums = new Sums[matrix.length];
        return CompletableFuture.supplyAsync(() -> {
            for (int i = 0; i < matrix.length; i++) {
-               int rowSum = 0;
-               int colSum = 0;
-               Sums objSums = new Sums();
-               for (int j = 0; j < matrix.length; j++) {
-                   colSum = colSum + matrix[i][j];
-                   rowSum = rowSum + matrix[j][i];
-               }
-               objSums.setColSum(colSum);
-               objSums.setRowSum(rowSum);
-               sums[i] = objSums;
+               sums[i] = sumByIRowAndColumn(i, matrix);
            }
            return sums;
        });
